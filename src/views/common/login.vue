@@ -38,6 +38,7 @@
 
 <script>
   import { getUUID } from '@/utils'
+  import CryptoJS from 'crypto-js'
   export default {
     data () {
       return {
@@ -74,7 +75,7 @@
               method: 'post',
               data: this.$http.adornData({
                 'username': this.dataForm.userName,
-                'password': this.dataForm.password,
+                'password': CryptoJS.MD5(this.dataForm.password).toString(),
                 'uuid': this.dataForm.uuid,
                 'captcha': this.dataForm.captcha
               })
